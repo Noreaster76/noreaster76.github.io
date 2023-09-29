@@ -22,16 +22,16 @@ Now, let's first discuss flat test structure, which I'm pretty sure is the preva
 
 When writing unit tests, most of us probably use a flat test structure. All the unit tests are at the same level of indentation, and as the logic being tested grows more complex, so do the descriptions of said tests. As an example, let's say you are trying to add coverage to fizzbuzz.
 
-```
-Given an integer, when the integer is divisible by neither 3 nor 5, print the integer
-Given an integer, when the integer is divisible by 3 and not 5, print 'fizz'
-Given an integer, when the integer is divisible by 5 and not 3, print 'buzz'
-Given an integer, when the integer is divisible by both 3 and 5, print 'fizzbuzz'
+```ruby
+"Given an integer, when the integer is divisible by neither 3 nor 5, print the integer"
+"Given an integer, when the integer is divisible by 3 and not 5, print 'fizz'"
+"Given an integer, when the integer is divisible by 5 and not 3, print 'buzz'"
+"Given an integer, when the integer is divisible by both 3 and 5, print 'fizzbuzz'"
 ```
 
 (I'll try to keep things in pseudocode as much as possible, so as to resonate with as many of us engineers as possible, regardless of coding language.) With a flat structure, the tests would look something like:
 
-```
+```ruby
 testInputIsDivisibleByNeither3Nor5 {
   assert(fizzbuzz(4) == '4')
 }
@@ -48,20 +48,21 @@ testInputIsDivisibleByBoth3And5 {
 
 I suppose that's manageable, but keep in mind that we're dealing with a very simple system under test that consists of just a couple of logical branches. What happens if the business logic grows more complex?
 
-```
-# replace this:
-# Given an integer, when the integer is divisible by both 3 and 5, print 'fizzbuzz'
-# with these:
-Given an integer, when the integer is divisible by both 3 and 5 and is odd, print 'fizzbuzz'
-Given an integer, when the integer is divisible by both 3 and 5 and is even, print the integer
+```ruby
+/* replace this requirement */
+"Given an integer, when the integer is divisible by both 3 and 5, print 'fizzbuzz'"
 
-# and add this:
-Given an integer, when the integer is divisible by neither 3 nor 5 but is divisible by 7, print 'seven'
+/* with these two requirements */
+"Given an integer, when the integer is divisible by both 3 and 5 and is odd, print 'fizzbuzz'"
+"Given an integer, when the integer is divisible by both 3 and 5 and is even, print the integer"
+
+/* and add this one */
+"Given an integer, when the integer is divisible by neither 3 nor 5 but is divisible by 7, print 'seven'"
 ```
 
 Then you would have:
 
-```
+```ruby
 testInputIsDivisibleByNeither3Nor5Nor7 {
   assert(fizzbuzz(4) == '4')
 }
@@ -94,7 +95,7 @@ Flat test structure is in fact *not* scalable. Additionally, and just as importa
 
 As you may have seen in BDD-compatible testing frameworks such as JUnit 5 (Java), Quick (Swift), RSpec (Ruby; perhaps the progenitor of this testing style), Spek (Kotlin), or ScalaTest (take a guess), a nested test structure enables us to nest our tests using as many levels as we want; descriptive annotations (such as `describe` or `context`) and setup state (often implemented in something like a `beforeEach` closure) impact not only the current node of the tree, but also all subnodes as well. Here's an example:
 
-```
+```ruby
 describe('fizzbuzz()') {
 
   describe('when the input is divisible by 3') {
@@ -149,19 +150,19 @@ Yes, it takes a little getting used to. After all, what are these free-form stri
 
 It's an easy way to segregate method A's tests from method B's tests:
 
-```
+```ruby
 describe('MyObject') {
 
   describe('#methodA()') {
-    // any setup and tests for methodA go here
+    /* any setup and tests for methodA go here */
   }
 
   describe('#methodB()') {
-    // any setup and tests for methodB go here
+    /* any setup and tests for methodB go here */
   }
   
   describe('#methodC()') {
-    // any setup and tests for methodC go here
+    /* any setup and tests for methodC go here */
   }
   
 }
@@ -175,7 +176,7 @@ Let's keep going.
 
 The next three lines that follow the method name are as follows:
 
-```
+```ruby
 describe('when the input is divisible by 3') {
   describe('but the input is not divisible by 5') {
     it('returns fizz') {
@@ -214,7 +215,7 @@ Let's say you're testing a branch of logic in your code that only has two possib
 
 For example:
 
-```
+```ruby
 describe('#myMethod()') {
   
   describe('when the request is valid') {
@@ -239,7 +240,7 @@ describe('#myMethod()') {
 
 Let's say you're using a `switch` or `case` statement to branch on various values of an enum, or let's say there are a few different kinds of exceptions that can be thrown from your method. In this case you would similarly need the corresponding contexts in your tests. But since you're only exploring one question at each level of the tree, again, it's much easier to keep track of whether you have all possible outcomes covered.
 
-```
+```ruby
 /* let's say there's enum that can have values ALICE, BOB, and CHARLIE */
 
 describe('#myMethod()') {
@@ -266,7 +267,7 @@ describe('#myMethod()') {
 
 All tests in a flat test structure share the same `setup` or `beforeEach` block. That means that any differentiation you need in your test scenarios needs to be within the tests themselves, leading to a lot of duplication! Setup code in a nested test structure, on the other hand, applies only to its containing scope and to any scopes nested within:
 
-```
+```ruby
 describe('#myMethod()') {
   
   describe('when the request is valid') {
@@ -311,7 +312,7 @@ describe('#myMethod()') {
 - Make sure that each level of `describe` statements ("when ABC is true" and "when ABC is not true", for example) covers just a single logical branch. If you have more than one logic clause in your `describe` statement ("when ABC is true and XYZ has not yet occurred"), then you're trying to do too much at once. (This actually ties in with the next bullet; read on.)
 - Make sure that the setup method (`beforeEach` in these examples, but that will likely differ depending on your testing library) contained within each `describe` statement embodies only that which is described in the `describe` statement. Doing so will make it much more straightforward exactly what is getting inherited by subnodes nested within.
 
-## Why should you not use nested?
+## Why should you _not_ use nested?
 
 I was attempting to be a bit even-handed by including this here, but aside from perhaps having a higher learning curve, I seriously cannot think of a decent reason. Flat test structure is really almost like taking a 3-D object (imagine the nested test structure is the 3-D object) and smooshing it or projecting it onto a 2-D surface, thereby losing all of the richness and fidelity of its 3-D volume. Or, more directly related to this discussion, a flat test structure is what you get when you collapse a nested structure into a single level, needlessly foregoing any and all of the power and richness of the latter.
 
