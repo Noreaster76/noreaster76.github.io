@@ -29,6 +29,8 @@ remote_theme: pages-themes/modernist@v0.2.0
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+  - jekyll # from https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+  - jekyll-seo-tag # from https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 github: [metadata]
 

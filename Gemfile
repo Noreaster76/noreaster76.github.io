@@ -7,8 +7,6 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 
-gem 'jekyll-theme-modernist', '~> 0.2.0'
-
 gem "github-pages", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
