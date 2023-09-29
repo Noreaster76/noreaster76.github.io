@@ -324,6 +324,13 @@ I was attempting to be a bit even-handed by including this here, but aside from 
 - Avoid mutating the objects you set up for your tests! Instead, treat them as immutable: organize your `setUp`/`beforeEach` blocks so that, for a given walk through the nested structure, each object you need for a given test gets set exactly once.
 - Avoid making your tests too complex. If you end up refactoring and extracting a lot of test logic into test helper methods, and your tests grow to be as complex as production code, something is wrong. More or less, you or another engineer should be able to read a test without having to hunt and peck all over the codebase to figure out what the test is doing. Limit indirection, and err on the side of duplicating test code rather than getting fancy and making your test code hard to follow. (Though if you have your nested tests properly structured, then there should in theory be no reason to have to duplicate anything.)
 
+## Examples
+
+You've made it _this_ far? Wow. Strong work. As a reward, here are examples of using nested test structure in some commonly used languages:
+- [Java](https://github.com/Noreaster76/nested_test_structure/blob/main/java/src/test/java/org/example/FizzBuzzerTest.java)
+- [Kotlin](https://github.com/Noreaster76/nested_test_structure/blob/main/kotlin/src/test/kotlin/org/example/FizzBuzzerTest.kt)
+- [Swift](https://github.com/Noreaster76/nested_test_structure/blob/main/swift/SwiftNestedTestStructureExampleTests/FizzBuzzerTest.swift)
+
 ## Conclusion
 
 In this blog post, I made a case for structuring your tests in a nested fashion, rather than putting everything at the same level. Though there are several benefits, the most important one is that it makes it much easier to make sure you have enumerated all logical branches from your production code. That is something you owe yourself, your team, your stakeholders, and your users alike.
