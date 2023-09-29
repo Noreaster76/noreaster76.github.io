@@ -1,8 +1,6 @@
 ---
-layout: page
 title: "Nested Test Structure FTW"
-permalink: /nested_test_structure
-categories: Testing
+layout: default
 ---
 
 # Nested Test Structure FTW

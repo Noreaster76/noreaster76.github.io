@@ -255,9 +255,8 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
-  github-pages (= 228)
+  github-pages
   http_parser.rb (~> 0.6.0)
-  jekyll (= 3.9.3)
   jekyll-feed (~> 0.12)
   minima (~> 2.5)
   tzinfo (>= 1, < 3)
