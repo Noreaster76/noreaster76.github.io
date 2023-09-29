@@ -1,12 +1,15 @@
 ---
 title: "Nested Test Structure FTW"
 layout: default
+excerpt_separator: <!--more-->
 ---
 
 # Nested Test Structure FTW
 
 In this blog post, I argue that unit tests should be written using a nested structure, rather than a flat one.
 In short, doing so allows you to much more clearly cover all possible cases, as well as DRY out your setup code.
+
+<!--more-->
 
 ## A stipulation
 
