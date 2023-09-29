@@ -331,6 +331,10 @@ You've made it _this_ far? Wow. Strong work. As a reward, here are examples of u
 - [Kotlin](https://github.com/Noreaster76/nested_test_structure/blob/main/kotlin/src/test/kotlin/org/example/FizzBuzzerTest.kt)
 - [Swift](https://github.com/Noreaster76/nested_test_structure/blob/main/swift/SwiftNestedTestStructureExampleTests/FizzBuzzerTest.swift)
 
+## One more thing
+
+I know it's Ruby, so it may not be the language you are using, but it turns out that the **excellent** [RSpec Style Guide](https://rspec.rubystyle.guide/) agrees with me! Check out what they say on [contexts](https://rspec.rubystyle.guide/#context-cases) and [how to name them](https://rspec.rubystyle.guide/#naming). The whole guide includes some real gems (har har), regardless of your preferred language, so give it a look.
+
 ## Conclusion
 
 In this blog post, I made a case for structuring your tests in a nested fashion, rather than putting everything at the same level. Though there are several benefits, the most important one is that it makes it much easier to make sure you have enumerated all logical branches from your production code. That is something you owe yourself, your team, your stakeholders, and your users alike.
