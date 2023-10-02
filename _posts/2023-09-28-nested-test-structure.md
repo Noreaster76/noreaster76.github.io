@@ -1,6 +1,6 @@
 ---
 title: "Nested Test Structure FTW"
-layout: default
+layout: post
 excerpt_separator: <!--more-->
 ---
 
