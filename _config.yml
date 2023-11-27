@@ -31,6 +31,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll # from https://jekyllrb.com/docs/themes/#overriding-theme-defaults
   - jekyll-seo-tag # from https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+  - jekyll-sitemap # from https://jekyllrb.com/docs/step-by-step/10-deployment/#plugins
 
 github: [metadata]
 
